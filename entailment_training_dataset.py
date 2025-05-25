@@ -502,4 +502,256 @@ grc_training_data = [
         "audit_statement": "Default domain policy applies logon hours",
         "expected_label": "neutral",
     },
+    {
+        "control": "Users are permitted to set passwords without complexity requirements",
+        "audit_statement": "All user passwords must be complex and difficult to guess",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "Unencrypted traffic is allowed on the internal network",
+        "audit_statement": "Data in transit must always be encrypted",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "Backups are stored without any form of encryption",
+        "audit_statement": "Backup data is encrypted for confidentiality",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "RDP is open to the internet without restriction",
+        "audit_statement": "Remote access is secured through VPN and MFA",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "Employee accounts are never disabled regardless of inactivity",
+        "audit_statement": "Dormant accounts must be locked automatically",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "There are no controls preventing software installation by users",
+        "audit_statement": "Users must receive approval to install new applications",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "SMBv1 is enabled for compatibility with legacy systems",
+        "audit_statement": "Legacy protocols are disabled on all machines",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "Audit logs are deleted every 15 days to save space",
+        "audit_statement": "System logs are retained for 90 days or longer",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "Default administrative accounts are left active on all systems",
+        "audit_statement": "Built-in administrator accounts are disabled by policy",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "Email traffic is not scanned for malware or phishing",
+        "audit_statement": "Inbound email is filtered to detect malicious content",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "USB storage is permitted without encryption or logging",
+        "audit_statement": "Use of removable storage is restricted and monitored",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "All traffic from guest Wi-Fi can access internal resources",
+        "audit_statement": "Guest network is isolated from corporate systems",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "Accounts are never reviewed or audited",
+        "audit_statement": "User access is reviewed periodically",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "Servers allow anonymous login via FTP",
+        "audit_statement": "Anonymous access to services is prohibited",
+        "expected_label": "contradiction",
+    },
+    {
+        "control": "All Windows updates are deferred indefinitely",
+        "audit_statement": "Systems receive security patches regularly",
+        "expected_label": "contradiction",
+    },
+    # --- NEUTRALS ---
+    {
+        "control": "Conference rooms use motion detectors to save energy",
+        "audit_statement": "Backups are encrypted before being transferred offsite",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Printers are enabled with secure print release",
+        "audit_statement": "Email filtering is configured to block external spam",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Employees must badge in to access office elevators",
+        "audit_statement": "All administrator activity is logged centrally",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Desktop wallpaper is standardized across all machines",
+        "audit_statement": "TLS 1.0 and 1.1 are disabled for web servers",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Security teams use threat intelligence feeds to assess risk",
+        "audit_statement": "USB devices are restricted to authorized users only",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Facilities access is restricted after business hours",
+        "audit_statement": "Users must change their password every 60 days",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Meeting rooms have sound masking installed",
+        "audit_statement": "Encrypted file transfers are required for confidential data",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "The HR department uses DocuSign for internal approvals",
+        "audit_statement": "Multi-factor authentication is enforced on all VPN connections",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Printers are equipped with badge authentication",
+        "audit_statement": "Firewall rules restrict incoming SMB traffic",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Work anniversary messages are automated in the intranet portal",
+        "audit_statement": "Security logs are retained for incident investigations",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "All mobile devices are encrypted using MDM policies",
+        "audit_statement": "Email access requires device compliance checks",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Password expiration is enforced every 90 days",
+        "audit_statement": "Accounts must be reviewed for dormant usage",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Remote access is restricted to authorized devices",
+        "audit_statement": "Administrator accounts are reviewed quarterly",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Backups are encrypted and replicated to a secondary data center",
+        "audit_statement": "Event logs are retained in a central SIEM",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Software updates are managed via WSUS",
+        "audit_statement": "Access to file shares requires authentication",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Only company-issued laptops are allowed on the corporate Wi-Fi",
+        "audit_statement": "MFA is required for VPN logins",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Secure boot is enabled on all servers",
+        "audit_statement": "Web browsing is restricted by content filters",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "SIEM correlates login events across multiple platforms",
+        "audit_statement": "TLS 1.0 is disabled on all Windows endpoints",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Endpoint detection is integrated with threat intelligence feeds",
+        "audit_statement": "Users are required to lock their screens when away",
+        "expected_label": "neutral",
+    },
+    {
+        "control": "Guest wireless requires SMS-based onboarding",
+        "audit_statement": "Privileged accounts are granted just-in-time access",
+        "expected_label": "neutral",
+    },
+    # --- SEMANTIC ENTAILMENTS ---
+    {
+        "control": "Security controls ensure only signed executables can run",
+        "audit_statement": "Execution of unverified binaries is blocked",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "User accounts that remain inactive for 60 days are disabled automatically",
+        "audit_statement": "Dormant accounts are inaccessible",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "TLS 1.0 and SSL are disabled on internal systems",
+        "audit_statement": "Outdated encryption protocols are not supported",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "Access to system utilities requires elevation",
+        "audit_statement": "Standard users cannot launch administrative tools",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "Removable media is automatically blocked on servers",
+        "audit_statement": "USB devices are not usable in server environments",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "Workstations auto-lock after 5 minutes of inactivity",
+        "audit_statement": "Devices enter a secure state when idle",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "All email attachments are scanned before delivery",
+        "audit_statement": "Files transmitted via email are screened for malware",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "Security patches are installed within 24 hours of CVE publication",
+        "audit_statement": "Critical vulnerabilities are mitigated promptly",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "Administrator access requires VPN connection and MFA",
+        "audit_statement": "Privileged users must authenticate using multiple methods remotely",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "BitLocker is used to encrypt all fixed drives",
+        "audit_statement": "Hard disks are secured using full disk encryption",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "Security monitoring alerts on privilege escalation attempts",
+        "audit_statement": "Unauthorized elevation of permissions triggers an alert",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "Device control restricts access to external USB ports",
+        "audit_statement": "Peripherals such as flash drives are blocked",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "Screen lock activates automatically when users step away",
+        "audit_statement": "Idle systems enforce session locking",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "Security baselines require disabling local admin accounts",
+        "audit_statement": "Built-in administrator login is not permitted",
+        "expected_label": "entailment",
+    },
+    {
+        "control": "Remote PowerShell access is limited to jump servers",
+        "audit_statement": "PowerShell is only available through secure administrative hosts",
+        "expected_label": "entailment",
+    },
 ]

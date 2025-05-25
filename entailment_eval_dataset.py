@@ -165,3 +165,59 @@ grc_eval_set_3 = {
         },
     ],
 }
+
+grc_eval_set_4 = {
+    "name": "Control vs. Audit Statement NLI Inference Evaluation Set #4",
+    "dataset": [
+        {
+            "control": "Sysmon is deployed on all Windows servers for advanced logging",
+            "audit_statement": "Endpoint telemetry includes detailed process and network activity logs",
+            "expected_label": "entailment",
+        },
+        {
+            "control": "All administrative access requires approval through privileged access workflow",
+            "audit_statement": "Users cannot escalate to admin without going through a formal approval process",
+            "expected_label": "entailment",
+        },
+        {
+            "control": "Security patches are installed within 48 hours of critical CVE release",
+            "audit_statement": "Vulnerability remediation for critical risks is enforced within two days",
+            "expected_label": "entailment",
+        },
+        {
+            "control": "TLS 1.3 is enforced across all externally facing applications",
+            "audit_statement": "All public-facing systems support only the most secure transport protocols",
+            "expected_label": "entailment",
+        },
+        {
+            "control": "Application whitelisting is not enforced on any server tier",
+            "audit_statement": "Only pre-approved software is allowed to execute in the server environment",
+            "expected_label": "contradiction",
+        },
+        {
+            "control": "All administrator sessions are automatically recorded and archived",
+            "audit_statement": "Privileged user activity is not logged or reviewed",
+            "expected_label": "contradiction",
+        },
+        {
+            "control": "Cloud resource access is restricted via role-based access controls",
+            "audit_statement": "Access to cloud assets is governed by predefined user roles",
+            "expected_label": "entailment",
+        },
+        {
+            "control": "BitLocker is not used to encrypt virtual desktop instances",
+            "audit_statement": "Virtual desktops are encrypted to protect at-rest data",
+            "expected_label": "contradiction",
+        },
+        {
+            "control": "Removable media usage is monitored but not restricted",
+            "audit_statement": "USB device usage is tightly controlled through policy enforcement",
+            "expected_label": "contradiction",
+        },
+        {
+            "control": "Physical access to server rooms is protected by biometric scanners",
+            "audit_statement": "Multi-factor authentication controls physical entry into critical infrastructure zones",
+            "expected_label": "entailment",
+        },
+    ],
+}
