@@ -4,11 +4,13 @@ from transformers import (
     Trainer,
     TrainingArguments,
     set_seed,
+    EarlyStoppingCallback,
 )
 from transformers import set_seed
 from torch.utils.data import Dataset
 import torch
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 
 from entailment_training_dataset import grc_training_data
 
@@ -40,8 +42,8 @@ class GRCDataset(Dataset):
             return_tensors="pt",
         )
         return {
-            "input_ids": encoded["input_ids"].squeeze(),
-            "attention_mask": encoded["attention_mask"].squeeze(),
+            "input_ids": encoded["input_ids"][0],
+            "attention_mask": encoded["attention_mask"][0],
             "labels": torch.tensor(label2id[item["expected_label"]], dtype=torch.long),
         }
 
@@ -64,26 +66,42 @@ eval_dataset = GRCDataset(val_data, tokenizer)
 # Training args
 training_args = TrainingArguments(
     output_dir="./finetuned_nli-deberta-v3-large",
-    fp16=True,
-    per_device_train_batch_size=8,
-    num_train_epochs=10,
-    learning_rate=2e-5,
-    logging_dir="./logs",
-    logging_steps=1,
-    save_strategy="no",
-    disable_tqdm=False,
-    # evaluation_strategy="epoch",
+    evaluation_strategy="epoch",
+    save_strategy="epoch",
+    load_best_model_at_end=True,
+    metric_for_best_model="accuracy",
+    greater_is_better=True,
     save_total_limit=1,
-    # load_best_model_at_end=True,
-    metric_for_best_model="eval_loss",
+    per_device_train_batch_size=8,
+    per_device_eval_batch_size=8,
+    num_train_epochs=5,
+    learning_rate=2e-5,
+    fp16=True,
+    logging_dir="./logs",
+    logging_strategy="steps",
+    logging_steps=5,
+    disable_tqdm=False,
 )
 
 
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
     preds = logits.argmax(axis=1)
-    accuracy = (preds == labels).astype(float).mean().item()
-    return {"accuracy": accuracy}
+
+    # Accuracy
+    acc = accuracy_score(labels, preds)
+
+    # Precision, Recall, F1 (macro = average across all 3 labels)
+    precision, recall, f1, _ = precision_recall_fscore_support(
+        labels, preds, average="macro", zero_division=0
+    )
+
+    return {
+        "accuracy": acc,
+        "precision_macro": precision,
+        "recall_macro": recall,
+        "f1_macro": f1,
+    }
 
 
 # Trainer
@@ -94,6 +112,7 @@ trainer = Trainer(
     eval_dataset=eval_dataset,
     tokenizer=tokenizer,
     compute_metrics=compute_metrics,
+    callbacks=[EarlyStoppingCallback(early_stopping_patience=2)],
 )
 
 # Show training device info
