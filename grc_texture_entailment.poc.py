@@ -1,7 +1,12 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 import torch.nn.functional as F
-from entailment_eval_dataset import grc_eval_set_1, grc_eval_set_2, grc_eval_set_3
+from entailment_eval_dataset import (
+    grc_eval_set_1,
+    grc_eval_set_2,
+    grc_eval_set_3,
+    grc_eval_set_4,
+)
 
 
 def main():
@@ -9,7 +14,7 @@ def main():
     original_deberta_model = "cross-encoder/nli-deberta-v3-large"
 
     # Model #2: Fine-tuned deberta known as finetuned_nli-deberta-v3-large
-    finetuned_deberta_model = "./v1_finetuned_nli-deberta-v3-large"
+    finetuned_deberta_model = "./finetuned_nli-deberta-v3-large"
 
     infer(original_deberta_model, grc_eval_set_1)
     infer(finetuned_deberta_model, grc_eval_set_1)
@@ -19,6 +24,9 @@ def main():
 
     infer(original_deberta_model, grc_eval_set_3)
     infer(finetuned_deberta_model, grc_eval_set_3)
+
+    infer(original_deberta_model, grc_eval_set_4)
+    infer(finetuned_deberta_model, grc_eval_set_4)
 
 
 def infer(model_name: str, eval_dataset: dict) -> None:
