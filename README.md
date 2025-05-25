@@ -252,6 +252,7 @@ Accuracy: 10 / 10 = 100.00%
 | Set #1   | 60%      | 90%        |
 | Set #2   | 50%      | 90%        |
 | Set #3   | 80%      | 90%        |
+| Set #4   | 60%      | 100%       |
 
 ✅ Fine-tuning significantly improved accuracy across all test sets.
 
