@@ -207,6 +207,42 @@ Credential Guard is enabled on supported hardware            | Credential theft 
 
 Accuracy: 9 / 10 = 90.00%
 ---
+
+[*] Model in use: cross-encoder/nli-deberta-v3-large
+[*] Evaluation set name: Control vs. Audit Statement NLI Inference Evaluation Set #4
+Control                                                      | Audit Statement                                              | Predicted    | Expected     | Correct? | Conf   | [Contradict, Entail, Neutral]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sysmon is deployed on all Windows servers for advanced log   | Endpoint telemetry includes detailed process and network a   | neutral      | entailment   | False    | 1.00 | [0.00, 0.00, 1.00]
+All administrative access requires approval through privil   | Users cannot escalate to admin without going through a for   | entailment   | entailment   | True     | 0.99 | [0.00, 0.99, 0.01]
+Security patches are installed within 48 hours of critical   | Vulnerability remediation for critical risks is enforced w   | entailment   | entailment   | True     | 1.00 | [0.00, 1.00, 0.00]
+TLS 1.3 is enforced across all externally facing applicati   | All public-facing systems support only the most secure tra   | neutral      | entailment   | False    | 1.00 | [0.00, 0.00, 1.00]
+Application whitelisting is not enforced on any server tie   | Only pre-approved software is allowed to execute in the se   | contradiction | contradiction | True     | 1.00 | [1.00, 0.00, 0.00]
+All administrator sessions are automatically recorded and    | Privileged user activity is not logged or reviewed           | contradiction | contradiction | True     | 1.00 | [1.00, 0.00, 0.00]
+Cloud resource access is restricted via role-based access    | Access to cloud assets is governed by predefined user role   | entailment   | entailment   | True     | 1.00 | [0.00, 1.00, 0.00]
+BitLocker is not used to encrypt virtual desktop instances   | Virtual desktops are encrypted to protect at-rest data       | neutral      | contradiction | False    | 1.00 | [0.00, 0.00, 1.00]
+Removable media usage is monitored but not restricted        | USB device usage is tightly controlled through policy enfo   | contradiction | contradiction | True     | 1.00 | [1.00, 0.00, 0.00]
+Physical access to server rooms is protected by biometric    | Multi-factor authentication controls physical entry into c   | neutral      | entailment   | False    | 0.99 | [0.00, 0.01, 0.99]
+
+Accuracy: 6 / 10 = 60.00%
+---
+
+[*] Model in use: ./finetuned_nli-deberta-v3-large
+[*] Evaluation set name: Control vs. Audit Statement NLI Inference Evaluation Set #4
+Control                                                      | Audit Statement                                              | Predicted    | Expected     | Correct? | Conf   | [Contradict, Entail, Neutral]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sysmon is deployed on all Windows servers for advanced log   | Endpoint telemetry includes detailed process and network a   | entailment   | entailment   | True     | 0.98 | [0.00, 0.98, 0.02]
+All administrative access requires approval through privil   | Users cannot escalate to admin without going through a for   | entailment   | entailment   | True     | 1.00 | [0.00, 1.00, 0.00]
+Security patches are installed within 48 hours of critical   | Vulnerability remediation for critical risks is enforced w   | entailment   | entailment   | True     | 1.00 | [0.00, 1.00, 0.00]
+TLS 1.3 is enforced across all externally facing applicati   | All public-facing systems support only the most secure tra   | entailment   | entailment   | True     | 1.00 | [0.00, 1.00, 0.00]
+Application whitelisting is not enforced on any server tie   | Only pre-approved software is allowed to execute in the se   | contradiction | contradiction | True     | 1.00 | [1.00, 0.00, 0.00]
+All administrator sessions are automatically recorded and    | Privileged user activity is not logged or reviewed           | contradiction | contradiction | True     | 1.00 | [1.00, 0.00, 0.00]
+Cloud resource access is restricted via role-based access    | Access to cloud assets is governed by predefined user role   | entailment   | entailment   | True     | 1.00 | [0.00, 1.00, 0.00]
+BitLocker is not used to encrypt virtual desktop instances   | Virtual desktops are encrypted to protect at-rest data       | contradiction | contradiction | True     | 0.98 | [0.98, 0.00, 0.02]
+Removable media usage is monitored but not restricted        | USB device usage is tightly controlled through policy enfo   | contradiction | contradiction | True     | 1.00 | [1.00, 0.00, 0.00]
+Physical access to server rooms is protected by biometric    | Multi-factor authentication controls physical entry into c   | entailment   | entailment   | True     | 1.00 | [0.00, 1.00, 0.00]
+
+Accuracy: 10 / 10 = 100.00%
+---
 ```
 
 ## 📊 Results
