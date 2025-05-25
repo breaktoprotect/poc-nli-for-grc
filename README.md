@@ -82,19 +82,6 @@ Compare inference accuracy between:
 
 ---
 
-## 📁 Structure
-
-```
-.
-├── entailment_eval_dataset.py
-├── entailment_training_dataset.py
-├── run_inference.py
-├── train_model.py
-├── v1_finetuned_nli-deberta-v3-large/
-```
-
----
-
 ## ⚙️ Usage
 
 ```bash
